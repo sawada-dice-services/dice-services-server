@@ -1,0 +1,13 @@
+steps:
+  - name: "golang"
+    args: ["go", "build", "-o", "main"]
+    dir: "./"
+    id: "go:build-server"
+
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "app"
+      - "deploy"
+      - "app.yaml"
+      - "--project=$PROJECT_ID"
+    waitFor: ["go:build-front"]
