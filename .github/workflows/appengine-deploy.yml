@@ -1,0 +1,37 @@
+name: deploy-to-gae
+on:
+  push:
+    branches:
+      - main
+jobs:
+  go_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.16.0'
+      - run: go test ./handlers
+  go_build:
+    needs: go_test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go
+        with:
+          go-version: '^1.16.0'
+      - run: go build -o main ./main.go
+  deploy_to_gae:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTIFY_URL }}
+          service_account: ${{ secrets.GAE_DEPLOY_SA_ID }}
+
+      - uses: google-github-actions/deploy-appengine@v1.1.0
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          deliverables: app.yaml

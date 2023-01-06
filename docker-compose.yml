@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  server:
+    build: .
+    environment:
+      - SERVER_PORT=${SERVER_PORT}
+    ports:
+      - 8080:${SERVER_PORT}
