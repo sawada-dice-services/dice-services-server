@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-go
+      - uses: actions/setup-go@v3
         with:
           go-version: '^1.16.0'
       - run: go build -o main ./main.go
@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: 'auth'
-        uses: 'google-github-actions/auth@v1'
+        uses: google-github-actions/auth@v1
         with:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTIFY_URL }}
           service_account: ${{ secrets.GAE_DEPLOY_SA_ID }}
