@@ -22,6 +22,10 @@ jobs:
           go-version: '^1.16.0'
       - run: go build -o main ./main.go
   deploy_to_gae:
+    needs: go_build
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
