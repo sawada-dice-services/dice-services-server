@@ -32,7 +32,7 @@ jobs:
       - id: 'auth'
         uses: google-github-actions/auth@v1
         with:
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTIFY_URL }}
+          workload_identity_provider: projects/1014633999809/locations/global/workloadIdentityPools/workload-identify-pool/providers/githubactionstokenprovider
           service_account: deploy-server-to-gae@dice-service-373504.iam.gserviceaccount.com
 
       - uses: google-github-actions/deploy-appengine@v1.1.0
