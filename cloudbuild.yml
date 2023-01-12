@@ -1,7 +1,7 @@
 steps:
 
 - name: "gcr.io/cloud-builders/docker"
-  args: ["build", "-t", "$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image:$SHORT_SHA", "."]
+  args: ["build", "-t", "$_DEPLOY_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image:$SHORT_SHA", "."]
   id: "docker-build"
 
 - name: "gcr.io/cloud-builders/gcloud"
@@ -10,7 +10,7 @@ steps:
     - "deploy"
     - "dice-service"
     - "--image"
-    - "$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image"
+    - "$_DEPLOY_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image"
     - "--max-instances"
     - "1"
     - "--allow-unauthenticated"
@@ -19,7 +19,7 @@ steps:
   waitFor: ["docker-build"]
 
 images:
-- "$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image"
+- "$_DEPLOY_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image"
 
 options:
   logging: CLOUD_LOGGING_ONLY
