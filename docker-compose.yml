@@ -3,7 +3,7 @@ version: "3.7"
 services:
   server:
     build: .
-    environment:
-      - PORT=${PORT}
+    args:
+      PORT: ${SERVER_PORT}
     ports:
-      - 8080:${PORT}
+      - ${SERVER_PORT}:${SERVER_PORT}
