@@ -10,7 +10,7 @@ steps:
     - "deploy"
     - "dice-service"
     - "--image"
-    - "$_DEPLOY_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image"
+    - "$_DEPLOY_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image:latest"
     - "--max-instances"
     - "1"
     - "--allow-unauthenticated"
