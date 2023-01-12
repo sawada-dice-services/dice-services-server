@@ -6,7 +6,7 @@ steps:
   id: "go-build"
 
 - name: "gcr.io/cloud-builders/docker"
-  args: [ "build", "-t", "$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image:$SHORT_SHA", "." ]
+  args: ["build", "-t", "$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image:$SHORT_SHA", "."]
   id: "docker-build"
   waitFor: ["go-build"]
 images:
