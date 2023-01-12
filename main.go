@@ -13,7 +13,7 @@ func main() {
 
 	e.POST("/dice", handlers.Dice)
 
-	port := os.Getenv("SERVER_PORT")
+	port := os.Getenv("PORT")
 	if port == "" {
 		panic("port number is not define.")
 	}
