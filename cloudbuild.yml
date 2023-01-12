@@ -1,16 +1,9 @@
 steps:
 
-- name: "golang"
-  args: ["go", "build", "-o", "main", "./main.go"]
-  dir: "./"
-  id: "go-build"
-
 - name: "gcr.io/cloud-builders/docker"
   args: ["build", "-t", "$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image:$SHORT_SHA", "."]
   id: "docker-build"
   waitFor: ["go-build"]
-images:
-- "$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image"
 
 - name: "gcr.io/cloud-builders/gcloud"
   args:
@@ -22,3 +15,6 @@ images:
     - "1"
     - "--allow-unauthenticated"
   waitFor: ["docker-build"]
+
+images:
+- "$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image"
