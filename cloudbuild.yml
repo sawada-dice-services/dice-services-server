@@ -1,7 +1,7 @@
 steps:
 
 - name: "gcr.io/cloud-builders/docker"
-  args: ["build", "-t", "$_DEPLOY_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image:$SHORT_SHA", "."]
+  args: ["build", "-t", "$_DEPLOY_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image:$SHORT_SHA", "-t", "$_DEPLOY_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image:latest", "."]
   id: "docker-build"
 
 - name: "gcr.io/cloud-builders/gcloud"
@@ -19,7 +19,7 @@ steps:
   waitFor: ["docker-build"]
 
 images:
-- "$_DEPLOY_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image"
+- "$_DEPLOY_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image:latest"
 
 options:
   logging: CLOUD_LOGGING_ONLY
