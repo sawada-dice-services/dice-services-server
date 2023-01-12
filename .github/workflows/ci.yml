@@ -1,8 +1,12 @@
 name: deploy-to-gae
 on:
   push:
+    branches-ignore:
+      - main # ブランチ保護されているため
+  pull_request_target:
     branches:
-      - main
+      - main # hotfix対応を考慮して
+      - develop
 jobs:
   go_test:
     runs-on: ubuntu-latest
