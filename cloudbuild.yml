@@ -21,4 +21,4 @@ images:
     - "--max-instances"
     - "1"
     - "--allow-unauthenticated"
-  waitFor: ["go-build"]
+  waitFor: ["docker-build"]
