@@ -18,3 +18,6 @@ steps:
 
 images:
 - "$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
