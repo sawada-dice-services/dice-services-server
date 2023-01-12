@@ -8,6 +8,7 @@ steps:
   args:
     - "run"
     - "deploy"
+    - "dice-service"
     - "--image"
     - "$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/server-image"
     - "--max-instances"
