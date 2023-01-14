@@ -1,11 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"dice.sawada.pro/handlers"
 	"github.com/labstack/echo/v4"
 )
+
+var DEFAULT_PORT = "8080"
 
 func main() {
 	e := echo.New()
@@ -15,7 +18,8 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		panic("port number is not define.")
+		port = DEFAULT_PORT
+		fmt.Printf("WARN: port number is not defined. listening %s", DEFAULT_PORT)
 	}
 
 	e.Logger.Fatal(e.Start(":" + port))
